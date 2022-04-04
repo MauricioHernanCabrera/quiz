@@ -1,0 +1,19 @@
+.aspect_ratio {
+  position: relative;
+}
+
+.aspect_ratio__shape {
+}
+
+.aspect_ratio__item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  & > * {
+    height: 100%;
+    width: 100%;
+  }
+}

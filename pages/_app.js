@@ -1,32 +1,43 @@
-import * as React from "react";
-import Head from "next/head";
-import { ThemeProvider } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
-
+import React, { useEffect } from "react";
 import { CacheProvider } from "@emotion/react";
+import { ThemeProvider, CssBaseline } from "@mui/material";
+import { Provider, useDispatch } from "react-redux";
+
+import createEmotionCache from "../utility/createEmotionCache";
+
+import store from "./../store";
+import { metamaskListener } from "../store/contract";
 
 import theme from "../styles/theme/darkTheme";
 import "../styles/globals.scss";
-import createEmotionCache from "./../utility/createEmotionCache";
 
-// Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
-export default function MyApp(props) {
+const MyApp = (props) => {
+  return (
+    <Provider store={store}>
+      <Wrapper {...props} />
+    </Provider>
+  );
+};
+
+const Wrapper = (props) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+
+  const dispatch = useDispatch(store);
+
+  useEffect(() => {
+    dispatch(metamaskListener());
+  }, [dispatch]);
+
   return (
     <CacheProvider value={emotionCache}>
-      <Head>
-        <title>Change title in _app.tsx</title>
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
-      </Head>
-
-      <CssBaseline />
-
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Component {...pageProps} />
       </ThemeProvider>
     </CacheProvider>
   );
-}
+};
+
+export default MyApp;

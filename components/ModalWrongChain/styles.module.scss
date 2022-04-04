@@ -1,0 +1,24 @@
+.modal_wrong_chain {
+  .modal_wrong_chain__container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 500px;
+    width: 100%;
+  }
+
+  .modal_wrong_chain__title {
+  }
+
+  .modal_wrong_chain__content {
+  }
+
+  .modal_wrong_chain__description {
+    margin-bottom: 12px;
+  }
+
+  .modal_wrong_chain__button {
+    margin-bottom: 0;
+  }
+}
