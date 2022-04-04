@@ -125,6 +125,7 @@ export default function Home() {
               />
 
               <AspectRatioBox ratio={21 / 9}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   className={styles.quiz_card__image}
                   src={QUIZ.image}
